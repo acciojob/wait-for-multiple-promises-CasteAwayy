@@ -15,20 +15,16 @@ const threePromise = [wait("first"), wait("second"), wait("third")];
 Promise.all(threePromise).then((value) => {
   tbody.removeChild(tbody.firstElementChild);
   const sum = renderRow(value);
-  const tr = document.createElement("tr");
-  let html = `<td>Total</td><td>${sum}</td>`;
-  tr.insertAdjacentHTML("afterbegin", html);
-  tbody.insertAdjacentElement("beforeend", tr);
+  let html = `<tr><td>Total</td><td>${sum}</td></tr>`;
+  tbody.insertAdjacentHTML("beforeend", html);
 });
 
 function renderRow(value) {
   let sum = 0;
   for (let i = 0; i < 3; i++) {
     sum += value[i].time;
-    const tr = document.createElement("tr");
-    let html = `<td>Promise ${i + 1}</td><td>${value[i].time}</td>`;
-    tr.insertAdjacentHTML("afterbegin", html);
-    tbody.insertAdjacentElement("beforeend", tr);
+    let html = `<tr><td>Promise ${i + 1}</td><td>${value[i].time}</td></tr>`;
+    tbody.insertAdjacentHTML("beforeend", html);
   }
   return sum;
 }
